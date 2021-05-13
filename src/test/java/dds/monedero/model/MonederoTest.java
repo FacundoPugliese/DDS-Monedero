@@ -34,7 +34,7 @@ public class MonederoTest {
 
   @Test
   void TresDepositos() {
-    cuenta.setMovimientos(new ArrayList<>());
+    
     cuenta.poner(1500);
     cuenta.poner(456);
     cuenta.poner(1900);
