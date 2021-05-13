@@ -28,20 +28,16 @@ public class Cuenta {
 
   public void poner(double cuanto) {
     validarOperacionPoner(cuanto);
-
-    new Movimiento(LocalDate.now(), cuanto, true).agregateA(this);
+    this.setSaldo(this.getSaldo() + cuanto);
+    this.movimientos.add(new Movimiento(LocalDate.now(), cuanto, true));
   }
 
   public void sacar(double cuanto) {
     validarOperacionSacar(cuanto);
-    
-    new Movimiento(LocalDate.now(), cuanto, false).agregateA(this);
+    this.setSaldo(this.getSaldo() - cuanto);
+    this.movimientos.add(new Movimiento(LocalDate.now(), cuanto, false));
   }
 
-  public void agregarMovimiento(LocalDate fecha, double cuanto, boolean esDeposito) {
-    Movimiento movimiento = new Movimiento(fecha, cuanto, esDeposito);
-    movimientos.add(movimiento);
-  }
 
   public double getMontoExtraidoA(LocalDate fecha) {
     return getMovimientos().stream()
@@ -58,7 +54,7 @@ public class Cuenta {
     return saldo;
   }
 
-  public void setSaldo(double saldo) {
+  private void setSaldo(double saldo) {
     this.saldo = saldo;
   }
 
