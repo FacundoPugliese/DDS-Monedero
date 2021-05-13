@@ -21,6 +21,7 @@ public class MonederoTest {
   @Test
   void Poner() {
     cuenta.poner(1500);
+    Assertions.assertEquals(cuenta.getSaldo() , 1500);
   }
 
   @Test
